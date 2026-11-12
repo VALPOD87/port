@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VALPOD — Валера Подгайный · AI-креатор · режиссёр монтажа · моушн-дизайнер</title>
+<meta name="description" content="Портфолио VALPOD: AI-реклама, трейлеры, ивент-фильмы. Полный цикл — идея, AI-генерация, монтаж, моушн.">
+<meta property="og:title" content="VALPOD — Валера Подгайный">
+<meta property="og:description" content="AI-креатор · режиссёр монтажа · моушн-дизайнер">
+<meta property="og:image" content="https://valpod87.github.io/port/img/01_bounty.jpg">
+<link rel="icon" href="img/logo_valpod.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#000; --card:#050505; --line:#141414; --line2:#1e1e1e;
+    --accent:#00daff; --text:#d8d8d8; --muted:#6a6a6a; --dim:#3a3a3a;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'Unbounded',system-ui,sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+
+  /* ── HERO ── */
+  .hero{position:relative;height:100vh;min-height:560px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+  #stars{position:absolute;inset:0;width:100%;height:100%}
+  .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:160px;background:linear-gradient(to bottom,transparent,#000);pointer-events:none}
+  .hero-in{position:relative;z-index:2;padding:0 24px;width:100%}
+  .logo{width:min(620px,80vw);height:auto;display:block;margin:0 auto;filter:drop-shadow(0 0 28px rgba(0,218,255,.22));opacity:0;animation:fade 1.4s .2s ease forwards}
+  .subs{position:relative;display:inline-flex;gap:1.4em;margin-top:34px;font-size:clamp(9px,1vw,11px);letter-spacing:.24em;text-transform:uppercase;color:#7a7a7a;white-space:nowrap}
+  .subs i{font-style:normal;color:#2e2e2e}
+  .subs-txt{display:inline-flex;gap:1.4em;clip-path:inset(0 100% 0 0);animation:reveal 1.6s 1s cubic-bezier(.6,0,.2,1) forwards}
+  .scan{position:absolute;top:-7px;bottom:-7px;width:2px;left:0;background:var(--accent);box-shadow:0 0 8px var(--accent),0 0 22px rgba(0,218,255,.45);opacity:0;animation:scan 1.6s 1s cubic-bezier(.6,0,.2,1) forwards}
+  .name{margin-top:46px;font-size:clamp(13px,1.3vw,15px);letter-spacing:.06em;color:var(--text);opacity:0;animation:fade 1s 2.4s ease forwards}
+  .tagline{margin-top:12px;font-size:clamp(11px,1vw,12px);line-height:1.8;color:var(--muted);opacity:0;animation:fade 1s 2.6s ease forwards}
+  .cta{display:inline-block;margin-top:30px;padding:13px 26px;border:1px solid rgba(0,218,255,.45);color:var(--accent);font-size:10px;letter-spacing:.2em;text-transform:uppercase;transition:background .25s,color .25s,border-color .25s;opacity:0;animation:fade 1s 2.8s ease forwards}
+  .cta:hover{background:var(--accent);color:#000;border-color:var(--accent)}
+  .hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:2;width:1px;height:46px;background:#111;overflow:hidden}
+  .hint::after{content:"";position:absolute;left:0;top:-100%;width:1px;height:100%;background:linear-gradient(to bottom,transparent,var(--accent),transparent);animation:drip 2.4s ease-in-out infinite}
+  @keyframes fade{to{opacity:1}}
+  @keyframes reveal{to{clip-path:inset(0 0 0 0)}}
+  @keyframes scan{0%{opacity:1;left:0}92%{opacity:1}100%{opacity:0;left:100%}}
+  @keyframes drip{0%{top:-100%}100%{top:220%}}
+
+  /* ── SECTION HEAD ── */
+  .head{display:flex;justify-content:space-between;align-items:flex-end;padding:20px 0 18px;border-bottom:1px solid var(--line);margin-bottom:40px;font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--dim)}
+  .head b{font-weight:300;color:var(--accent)}
+
+  /* ── GRID ── */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:56px 32px;padding-bottom:110px}
+  .card{cursor:pointer;opacity:0;transform:translateY(36px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+  .card.vis{opacity:1;transform:none}
+  .card.hero-card{grid-column:1/-1}
+  .media{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--card);border:1px solid var(--line);transition:border-color .35s}
+  .card:hover .media{border-color:rgba(0,218,255,.5)}
+  .media img,.media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,1,.3,1),opacity .4s,filter .4s}
+  .media img{filter:brightness(.78) saturate(.85)}
+  .card:hover .media img{filter:brightness(1) saturate(1)}
+  .media video{opacity:0}
+  .card.playing .media video{opacity:1}
+  .card:hover .media img,.card:hover .media video{transform:scale(1.025)}
+  .p-icon{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.9);width:58px;height:58px;border-radius:50%;border:1px solid rgba(0,218,255,.5);background:rgba(0,0,0,.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s,transform .3s}
+  .p-icon::after{content:"";margin-left:4px;border-top:8px solid transparent;border-bottom:8px solid transparent;border-left:13px solid var(--accent)}
+  .card:hover .p-icon{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  .card.playing .p-icon{opacity:0}
+  .num{position:absolute;top:16px;left:18px;font-size:9px;letter-spacing:.2em;color:rgba(255,255,255,.55)}
+
+  .info{padding:22px 0 0;border-left:1px solid transparent;transition:border-color .3s}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+  .tag{font-size:8px;letter-spacing:.2em;text-transform:uppercase;padding:6px 10px;border:1px solid var(--line2);color:var(--muted)}
+  .tag.ai{border-color:rgba(0,218,255,.4);color:var(--accent)}
+  h2{font-size:clamp(14px,1.45vw,18px);font-weight:400;line-height:1.45;letter-spacing:.01em;color:#e6e6e6;margin-bottom:10px}
+  .hero-card h2{font-size:clamp(17px,2vw,24px)}
+  .meta{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .meta span{color:var(--accent)}
+  .desc{font-size:12px;line-height:1.95;color:#8c8c8c;max-width:640px}
+
+  /* ── FOOTER ── */
+  footer{border-top:1px solid var(--line);padding:80px 0 70px;text-align:center}
+  footer .logo-s{width:min(240px,50vw);opacity:.9;margin:0 auto 34px;display:block}
+  footer h3{font-size:clamp(16px,2vw,22px);font-weight:400;line-height:1.5;margin-bottom:30px;color:#e6e6e6}
+  .links{display:flex;flex-wrap:wrap;justify-content:center;gap:16px 40px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:40px}
+  .links a{transition:color .2s}
+  .links a:hover{color:var(--accent)}
+
+  /* ── MODAL ── */
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.96);display:none;align-items:center;justify-content:center;z-index:50;padding:60px 24px 24px}
+  .modal.open{display:flex}
+  .modal video{max-width:100%;max-height:100%;background:#000;outline:none}
+  .close{position:absolute;top:16px;right:22px;background:none;border:0;color:#888;font:300 30px/1 'Unbounded',sans-serif;cursor:pointer;transition:color .2s}
+  .close:hover{color:var(--accent)}
+
+  @media (max-width:760px){
+    .wrap{padding:0 18px}
+    .grid{grid-template-columns:1fr;gap:46px}
+    .subs,.subs-txt{gap:.9em}
+    .subs{letter-spacing:.16em}
+    .p-icon{opacity:1;left:14px;top:auto;bottom:14px;width:42px;height:42px;transform:none}
+    .card:hover .p-icon{transform:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:.01s!important;animation-delay:0s!important;transition:none!important}
+    .card{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <canvas id="stars"></canvas>
+  <div class="hero-in">
+    <img class="logo" src="img/logo_valpod.png" alt="VALPOD">
+    <div><div class="subs">
+      <span class="subs-txt"><span>AI-креатор</span><i>·</i><span>Режиссёр монтажа</span><i>·</i><span>Моушн-дизайнер</span></span>
+      <span class="scan"></span>
+    </div></div>
+    <div class="name">Валера Подгайный</div>
+    <p class="tagline">Не промптер, а режиссёр. Веду ролик целиком:<br>идея, раскадровка, AI-генерация, монтаж, моушн и звук.</p>
+    <a class="cta" href="https://t.me/valpod" target="_blank" rel="noopener">Написать в Telegram →</a>
+  </div>
+  <div class="hint"></div>
+</section>
+
+<div class="wrap">
+  <div class="head"><span>Избранные работы</span><b id="count"></b></div>
+  <main class="grid" id="grid"></main>
+</div>
+
+<footer>
+  <div class="wrap">
+    <img class="logo-s" src="img/logo_valpod.png" alt="VALPOD">
+    <h3>Пиши — и мы создадим визуальное<br>решение под любую задачу</h3>
+    <a class="cta" style="opacity:1;animation:none" href="https://t.me/valpod" target="_blank" rel="noopener">Telegram @valpod →</a>
+    <div class="links">
+      <a href="mailto:valpod87@gmail.com">valpod87@gmail.com</a>
+      <a href="https://t.me/valpod87" target="_blank" rel="noopener">Канал t.me/valpod87</a>
+    </div>
+  </div>
+</footer>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <button class="close" id="close" aria-label="Закрыть">×</button>
+  <video id="player" controls playsinline></video>
+</div>
+
+<script>
+/* ═══ РАБОТЫ — редактировать здесь ═══ */
+const WORKS = [
+  { id:'01_bounty', hero:true, ai:true,
+    title:'Bounty «Райское наслаждение»',
+    kind:'Неофициальный спек', role:'AI-режиссёр', date:'ноябрь 2026',
+    desc:'Новая картинка на оригинальный звук рекламы Bounty. Идея, раскадровка, AI-генерация покадрово, CG-вставки продукта, монтаж.' },
+  { id:'02_nam_poker', ai:false,
+    title:'«Нам покер» — официальный тизер-трейлер',
+    kind:'Трейлер', role:'Режиссёр монтажа', date:'сентябрь 2025',
+    desc:'Криминальная комедия с Александрой Бортич, Wink и Кинопоиск. Смонтирован на хакатоне TRAILERMAKERS.' },
+  { id:'03_povelitel_vetra', ai:false,
+    title:'«Повелитель ветра» — неофициальный трейлер',
+    kind:'Трейлер', role:'Режиссёр монтажа', date:'октябрь 2026',
+    desc:'Документальный фильм о кругосветном полёте Фёдора Конюхова на воздушном шаре. Сделан по итогам обучения в TRAILERMAKERS.' },
+  { id:'04_chukotexpress', ai:true,
+    title:'ЧукотЭкспресс — реклама службы доставки',
+    kind:'Реклама', role:'AI-режиссёр', date:'май 2026',
+    desc:'16-битный пиксель-арт в духе Денди для транспортной компании с Чукотки. Полный цикл: концепт, сценарий, AI-генерация, музыка, голос, монтаж.' },
+  { id:'05_malbek_suzana', ai:true,
+    title:'Malbek & Suzana «Жду тебя»',
+    kind:'Неофициальный сниппет', role:'AI-режиссёр', date:'2026',
+    desc:'Артисты на морском дне. Идея, визуал и производство мои.' },
+  { id:'06_my_skin', ai:true,
+    title:'My Skin — наружная реклама',
+    kind:'Реклама', role:'AI-креатор', date:'сентябрь 2025',
+    desc:'AI-видео для косметической клиники: генерация, композитинг, апскейл под наружный формат. Через агентство MATCH.' },
+  { id:'07_oiyai', ai:true,
+    title:'ОИЯИ — юбилейный фильм',
+    kind:'Ивент', role:'AI-креатор', date:'март 2026',
+    desc:'AI-визуал к 70-летию института: документальный реализм плюс футуристика. Через Студию Никитина.' }
+];
+
+document.getElementById('count').textContent = String(WORKS.length).padStart(2,'0');
+const grid = document.getElementById('grid');
+const canHover = matchMedia('(hover:hover)').matches;
+
+WORKS.forEach((w,i)=>{
+  const el = document.createElement('article');
+  el.className = 'card' + (w.hero ? ' hero-card' : '');
+  el.innerHTML = `
+    <div class="media">
+      <img src="img/${w.id}.jpg" alt="${w.title}" loading="${i<3?'eager':'lazy'}">
+      <video muted loop playsinline preload="none" data-src="video/${w.id}.mp4"></video>
+      <div class="num">${String(i+1).padStart(2,'0')}</div>
+      <div class="p-icon"></div>
+    </div>
+    <div class="info">
+      <div class="tags"><span class="tag">${w.kind}</span>${w.ai?'<span class="tag ai">AI</span>':''}</div>
+      <h2>${w.title}</h2>
+      <div class="meta">${w.role} · <span>${w.date}</span></div>
+      <p class="desc">${w.desc}</p>
+    </div>`;
+  const media = el.querySelector('.media'), prev = el.querySelector('video');
+  if (canHover){
+    media.addEventListener('mouseenter',()=>{
+      if(!prev.src) prev.src = prev.dataset.src;
+      prev.play().then(()=>el.classList.add('playing')).catch(()=>{});
+    });
+    media.addEventListener('mouseleave',()=>{ prev.pause(); el.classList.remove('playing'); });
+  }
+  el.addEventListener('click',()=>openModal(w));
+  grid.appendChild(el);
+});
+
+/* плавное появление карточек */
+const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('vis'); io.unobserve(e.target); } }),{threshold:.12});
+document.querySelectorAll('.card').forEach(c=>io.observe(c));
+
+/* модалка */
+const modal = document.getElementById('modal'), player = document.getElementById('player');
+function openModal(w){
+  document.querySelectorAll('.card video').forEach(v=>v.pause());
+  player.src = `video/${w.id}.mp4`; player.poster = `img/${w.id}.jpg`;
+  modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden'; player.play().catch(()=>{});
+}
+function closeModal(){
+  player.pause(); player.removeAttribute('src'); player.load();
+  modal.classList.remove('open'); modal.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+document.getElementById('close').onclick = closeModal;
+modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+
+/* звёздное поле — тихое, без резких движений */
+(()=>{
+  const c = document.getElementById('stars'), x = c.getContext('2d');
+  const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  let W,H,S=[],dpr=Math.min(devicePixelRatio||1,2);
+  function init(){
+    W=c.clientWidth; H=c.clientHeight; c.width=W*dpr; c.height=H*dpr; x.setTransform(dpr,0,0,dpr,0,0);
+    const n=Math.round(W*H/5200);
+    S=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.1+.2,a:Math.random()*.6+.15,t:Math.random()*6.28,s:Math.random()*.012+.004,v:Math.random()*.06+.01,cy:Math.random()<.08}));
+  }
+  function draw(){
+    x.clearRect(0,0,W,H);
+    for(const p of S){
+      if(!reduce){ p.t+=p.s; p.y-=p.v; if(p.y<-2){p.y=H+2;p.x=Math.random()*W;} }
+      const a=p.a*(.6+.4*Math.sin(p.t));
+      x.fillStyle = p.cy ? `rgba(0,218,255,${a})` : `rgba(255,255,255,${a})`;
+      x.beginPath(); x.arc(p.x,p.y,p.r,0,6.283); x.fill();
+    }
+    if(!reduce) requestAnimationFrame(draw);
+  }
+  addEventListener('resize',init); init(); draw();
+})();
+</script>
+</body>
+</html>
